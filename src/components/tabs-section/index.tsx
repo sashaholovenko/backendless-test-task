@@ -28,10 +28,11 @@ const TabsSection = () => {
     const navigate = useNavigate();
 
     useEffect( () => {
-        axios.get('/tabs.json')
+        axios.get('tabs.json')
             .then((response: AxiosResponse<Tab[]>) => {
                 const data = response.data;
                 navigate(`/tabs/${data[0].id}`)
+                console.log(data)
                 setTabs(data)
             })
             .catch((error) => {
