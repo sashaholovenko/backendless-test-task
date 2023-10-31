@@ -2,7 +2,7 @@ import React, {lazy, useEffect, useState} from 'react';
 import axios, {AxiosResponse} from "axios";
 import {
     createBrowserRouter, Link, Route, Router,
-    RouterProvider, Routes,
+    RouterProvider, Routes, useNavigate,
 } from "react-router-dom";
 import dummyChart from "../../tabs/dummyChart";
 import dummyList from "../../tabs/dummyList";
@@ -25,13 +25,13 @@ interface Tab {
 const TabsSection = () => {
 
     const [tabs, setTabs] = useState<Tab[]>()
+    const navigate = useNavigate();
 
     useEffect( () => {
         axios.get('/tabs.json')
             .then((response: AxiosResponse<Tab[]>) => {
-                // Handle the JSON data here
                 const data = response.data;
-                console.log(data);
+                navigate(`/tabs/${data[0].id}`)
                 setTabs(data)
             })
             .catch((error) => {
@@ -43,15 +43,15 @@ const TabsSection = () => {
         <div>
             <div style={{ width: '100%', display: 'flex' }}>
                 { tabs && tabs.map( el => (
-                    <Link to={`/${el.id}`} style={{ width: '33%', height: 40 }}>
-                        <button style={{width: "100%", height: 40}}>{el.id}</button>
+                    <Link to={`/tabs/${el.id}`} style={{ width: '33%', height: 40 }}>
+                        <button style={{width: "100%", height: 40}}>{el.title}</button>
                     </Link>
 
                 ))}
             </div>
             <Routes>
                 { tabs && tabs.map( el => (
-                    <Route path={`/${el.id}`} element={<TabsLoader filePath={el.path}/>}/>
+                    <Route path={`/tabs/${el.id}`} element={<TabsLoader filePath={el.path}/>}/>
 
                 ))}
 

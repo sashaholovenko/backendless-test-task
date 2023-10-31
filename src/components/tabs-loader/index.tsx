@@ -7,7 +7,6 @@ interface TabsLoaderProps {
 const TabsLoader = ({filePath}: TabsLoaderProps) => {
 
     const Content = lazy(() => import(`../../${filePath}`))
-    console.log(filePath    )
 
     return (
         <Suspense fallback={<div>Loading...</div>}>
