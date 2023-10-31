@@ -3,7 +3,14 @@ import React from 'react';
 const DummyTable = () => {
     return (
         <div>
-            <table><tr><td>Dummy</td><td>Table</td></tr></table>
+            <table>
+                <tbody>
+                <tr>
+                    <td>Dummy</td>
+                    <td>Table</td>
+                </tr>
+                </tbody>
+            </table>
         </div>
     );
 };

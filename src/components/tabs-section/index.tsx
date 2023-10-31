@@ -28,7 +28,7 @@ const TabsSection = () => {
     const navigate = useNavigate();
 
     useEffect( () => {
-        axios.get('tabs.json')
+        axios.get('/tabs.json')
             .then((response: AxiosResponse<Tab[]>) => {
                 const data = response.data;
                 navigate(`/tabs/${data[0].id}`)
@@ -44,7 +44,7 @@ const TabsSection = () => {
         <div>
             <div style={{ width: '100%', display: 'flex' }}>
                 { tabs && tabs.map( el => (
-                    <Link to={`/tabs/${el.id}`} style={{ width: '33%', height: 40 }}>
+                    <Link key={el.id} to={`/tabs/${el.id}`} style={{ width: '33%', height: 40 }}>
                         <button style={{width: "100%", height: 40}}>{el.title}</button>
                     </Link>
 
@@ -52,7 +52,7 @@ const TabsSection = () => {
             </div>
             <Routes>
                 { tabs && tabs.map( el => (
-                    <Route path={`/tabs/${el.id}`} element={<TabsLoader filePath={el.path}/>}/>
+                    <Route key={el.id} path={`/tabs/${el.id}`} element={<TabsLoader filePath={el.path}/>}/>
 
                 ))}
 
