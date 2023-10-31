@@ -1,5 +1,8 @@
 # Getting Started with Create React App
 
+You can visit app using this link (https://sashaholovenko.github.io/backendless-test-task/
+)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
